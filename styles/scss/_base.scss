@@ -1,0 +1,123 @@
+// COLORS
+$orange: #ffad00;
+$blue: #008ecc;
+$grey-dark: #2c2c2c;
+$grey-medium: #7f7f7f;
+$grey-light: #f2f2f2;
+$white: #ffffff;
+// FONT SIZES
+$s: 0.75rem;
+$m: 1rem;
+$l: 1.5rem;
+$xl: 2.25rem;
+$title: 3rem;
+// DEVICE BREAKPOINTS
+$mobile: 768px;
+$tablet: 960px;
+// FONTS
+@font-face {
+    font-family: "Ubuntu";
+    src: url("./../fonts/ubuntu-light-webfont.woff") format("woff");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url("./../fonts/ubuntu-regular-webfont.woff") format("woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./../fonts/roboto-regular-webfont.woff") format("woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./../fonts/roboto-regular-webfont.woff") format("woff");
+    font-weight: 700;
+}
+
+// MIXINS
+@mixin flexBox($direction,
+$justify-content,
+$align-items) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin circleIcon($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    & img {
+        width: 50%;
+        max-height: 75%;
+    }
+}
+
+@mixin transition($properties...) {
+    transition-property: $properties;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+}
+
+// CSS RESET
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    &::selection {
+        background-color: $orange;
+    }
+}
+
+:root {
+    font: 400 $m "Roboto", sans-serif;
+    line-height: 1.5;
+    color: $grey-medium;
+}
+
+// TYPOGRAPHY
+h1,
+h2,
+h3 {
+    font-family: "Ubuntu", sans-serif;
+    color: $grey-dark;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: $title;
+    margin-bottom: $m;
+    z-index: 1;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: $xl;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: $l;
+}
+
+p {
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $grey-dark;
+    transition: background-color 0.25s ease;
+    &:hover {
+        background-color: $grey-light;
+    }
+}

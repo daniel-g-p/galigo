@@ -1,1 +1,54 @@
 @use "./base" as *;
+header,
+main,
+footer {
+    width: 100%;
+}
+
+section {
+    padding: $xl $l;
+}
+
+.container {
+    position: relative;
+}
+
+.desktopNav {
+    display: none;
+}
+
+nav {
+    box-shadow: 0 0 $s $grey-medium;
+    background-color: $white;
+}
+
+.navBar {
+    @include flexBox(row, space-between, center);
+    padding: $l;
+}
+
+.logo {
+    height: $m*3;
+}
+
+.navToggle {
+    height: $l;
+}
+
+.mobileNav {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    &>div {
+        @include flexBox(column, flex-start, center);
+        & a {
+            width: 100%;
+            text-align: center;
+            padding-block: $m;
+            border-top: 1px solid $grey-light;
+            transition: background-color 0.25s ease;
+            &:hover {
+                background-color: $grey-light;
+            }
+        }
+    }
+}

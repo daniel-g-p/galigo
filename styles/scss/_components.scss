@@ -1,1 +1,83 @@
 @use "./base" as *;
+.navToggle {
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+    &.active {
+        opacity: 1;
+    }
+}
+
+button {
+    font: 400 $m "Ubuntu", sans-serif;
+    border: 2px solid $orange;
+    border-radius: 0.5em;
+    padding: 1em 2em;
+    background: none;
+    text-transform: uppercase;
+    color: $orange;
+    margin-block: $l;
+    @include transition(color, background-color);
+    &:hover {
+        background-color: $orange;
+        color: $white;
+        cursor: pointer;
+    }
+}
+
+.container.demo {
+    padding: 0;
+    background-image: url("./../../assets/svg/background.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.screenDemo {
+    @include flexBox(row,
+    center,
+    center);
+    position: relative;
+    width: 50%;
+    margin: $l auto 0;
+    &>img {
+        position: relative;
+        width: 100%;
+        z-index: 3;
+    }
+}
+
+.screens {
+    @include flexBox(row,
+    flex-start,
+    flex-start);
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    overflow: hidden;
+    &>img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin-right: -100%;
+        transform: translateX(100%);
+        transition: transform 1s ease;
+        z-index: 1;
+        &.active {
+            transform: translateX(0);
+            z-index: 2;
+        }
+        &.fadeOut {
+            transform: translateX(-100%);
+            z-index: 1;
+        }
+    }
+}
+
+.backgroundCover {
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    display: block;
+    background-color: $white;
+    z-index: 0;
+}
