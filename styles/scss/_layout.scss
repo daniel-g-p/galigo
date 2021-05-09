@@ -11,10 +11,31 @@ section {
 
 .container {
     position: relative;
-}
-
-.desktopNav {
-    display: none;
+    max-width: 480px;
+    margin-inline: auto;
+    &.demo {
+        padding: 0;
+        background-image: url("./../../assets/svg/background.svg");
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding-block: $l;
+    }
+    &.hero {
+        background-image: url("./../../assets/svg/logo_watermark.svg");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding-block: $l;
+    }
+    &.problems {
+        padding: $xl $l;
+    }
+    &.services {
+        width: 100%;
+        height: 100vw;
+        padding: $l;
+    }
 }
 
 nav {
@@ -23,23 +44,29 @@ nav {
 }
 
 .navBar {
-    @include flexBox(row, space-between, center);
+    @include flexBox(row,
+    space-between,
+    center);
     padding: $l;
 }
 
-.logo {
-    height: $m*3;
+.links {
+    @include flexBox(column,
+    flex-start,
+    center);
 }
 
-.navToggle {
-    height: $l;
+.desktopNav {
+    display: none;
 }
 
 .mobileNav {
     overflow: hidden;
     transition: max-height 0.5s ease;
     &>div {
-        @include flexBox(column, flex-start, center);
+        @include flexBox(column,
+        flex-start,
+        center);
         & a {
             width: 100%;
             text-align: center;
@@ -49,6 +76,229 @@ nav {
             &:hover {
                 background-color: $grey-light;
             }
+        }
+    }
+}
+
+#aboutSection,
+#solutionsSection {
+    background-color: $grey-light;
+}
+
+#problemSection {
+    padding: 0;
+}
+
+#solutionsSection {
+    padding-inline: 0;
+    & h2 {
+        text-align: center;
+        margin-inline: auto;
+        margin-bottom: 0;
+    }
+    & .container {
+        @include flexBox(column-reverse,
+        flex-start,
+        center);
+    }
+}
+
+.textBlock.solution {
+    padding-inline: $l;
+}
+
+#contactSection {
+    background-color: $grey-light;
+}
+
+footer {
+    @include flexBox(column,
+    flex-start,
+    center);
+    & nav {
+        width: 100%;
+        padding: $l;
+        text-align: center;
+        & img {
+            margin: 0 auto;
+        }
+        & a {
+            display: block;
+            margin-block: $s;
+            transition: color 0.25s ease;
+            &:hover {
+                color: $orange;
+            }
+        }
+    }
+    & .links {
+        margin-block: $s;
+    }
+}
+
+@media (min-width: $mobile) {
+    .desktopNav {
+        @include flexBox(row,
+        flex-end,
+        center);
+        margin-top: $m;
+        & a {
+            color: $grey-medium;
+            margin-left: $l;
+            transition: color 0.25s ease;
+            &:hover {
+                color: $orange;
+            }
+        }
+    }
+    .navBar {
+        flex-direction: column;
+    }
+    .links {
+        flex-direction: row;
+    }
+    .mobileNav,
+    .navToggle {
+        display: none;
+    }
+    #heroSection {
+        @include flexBox(row,
+        space-between,
+        center);
+    }
+    section {
+        padding: $xl*1.5 10%;
+    }
+    .container {
+        max-width: 100%;
+        &.hero {
+            width: 100%;
+            margin-right: $xl*1.5;
+        }
+        &.demo {
+            width: 100%;
+            margin-left: $xl*1.5;
+        }
+        &.values {
+            @include flexBox(row,
+            space-between,
+            flex-start);
+            flex-wrap: wrap;
+            margin-top: $l;
+        }
+        &.problems {
+            width: 50%;
+            padding: $xl $xl*2;
+        }
+        &.services {
+            width: 35vw;
+            height: 35vw;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 0;
+            margin: 0;
+            &>.services {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .textBlock.solution {
+        width: 50%;
+        padding: 0 $xl 0 0;
+        flex-grow: 1;
+    }
+    .value {
+        width: 50%;
+        margin: 0;
+        text-align: left;
+        @include flexBox(column,
+        flex-start,
+        flex-start);
+        &:nth-of-type(2n+1) {
+            padding: $l $xl $l 0;
+        }
+        &:nth-of-type(2n+2) {
+            padding: $l 0 $l $xl;
+        }
+    }
+    #problemSection {
+        @include flexBox(row,
+        space-between,
+        center);
+        margin: 0;
+        padding: 0;
+    }
+    .imageSlider {
+        width: 50%;
+        height: 50vw;
+        margin: 0;
+        max-width: 480px;
+        max-height: 480px;
+    }
+    .imageSwitch {
+        left: 100%;
+        bottom: $xl*1.5;
+    }
+    .imageIndicator {
+        bottom: $l;
+    }
+    #solutionsSection {
+        &>.container {
+            @include flexBox(row,
+            space-between,
+            center);
+            padding: $xl 10%;
+        }
+    }
+    .stage {
+        width: 75%;
+    }
+    footer .links {
+        @include flexBox(row,
+        center,
+        center);
+        & a {
+            margin-inline: $s;
+        }
+    }
+}
+
+@media (min-width: $tablet) {
+    h1 {
+        font-size: $xl*1.5;
+    }
+    h2 {
+        font-size: $xl;
+    }
+    h3 {
+        font-size: $l;
+    }
+    section {
+        padding: $xl*1.5 12.5%;
+    }
+    .navBar {
+        flex-direction: row;
+        align-items: center;
+        padding-inline: $xl*2;
+    }
+    .links {
+        margin: 0;
+    }
+    #solutionsSection {
+        &>.container {
+            padding-inline: 12.5%;
+        }
+    }
+    #contactSection {
+        @include flexBox(row-reverse,
+        space-between,
+        center);
+        padding-block: $xl*2;
+        & .container {
+            width: 40%;
+            margin-inline: $xl*2 0;
+            flex-grow: 1;
         }
     }
 }

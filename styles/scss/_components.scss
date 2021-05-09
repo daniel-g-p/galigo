@@ -1,5 +1,14 @@
 @use "./base" as *;
+.logo {
+    height: $l*2;
+    transition: transform 0.25s ease;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
 .navToggle {
+    height: $l;
     opacity: 0.5;
     transition: opacity 0.5s ease;
     &.active {
@@ -8,7 +17,8 @@
 }
 
 button {
-    font: 400 $m "Ubuntu", sans-serif;
+    font: 700 $m "Ubuntu", sans-serif;
+    letter-spacing: 0.1em;
     border: 2px solid $orange;
     border-radius: 0.5em;
     padding: 1em 2em;
@@ -16,7 +26,7 @@ button {
     text-transform: uppercase;
     color: $orange;
     margin-block: $l;
-    @include transition(color, background-color);
+    @include transition(0.25s, color, background-color, opacity);
     &:hover {
         background-color: $orange;
         color: $white;
@@ -24,20 +34,10 @@ button {
     }
 }
 
-.container.demo {
-    padding: 0;
-    background-image: url("./../../assets/svg/background.svg");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .screenDemo {
-    @include flexBox(row,
-    center,
-    center);
+    @include flexBox(row, center, center);
     position: relative;
-    width: 50%;
+    width: 60%;
     margin: $l auto 0;
     &>img {
         position: relative;
@@ -47,12 +47,9 @@ button {
 }
 
 .screens {
-    @include flexBox(row,
-    flex-start,
-    flex-start);
+    @include flexBox(row, flex-start, flex-start);
     position: absolute;
-    width: 98%;
-    height: 98%;
+    width: 95%;
     overflow: hidden;
     &>img {
         position: relative;
@@ -62,6 +59,7 @@ button {
         transform: translateX(100%);
         transition: transform 1s ease;
         z-index: 1;
+        opacity: 1;
         &.active {
             transform: translateX(0);
             z-index: 2;
@@ -69,15 +67,326 @@ button {
         &.fadeOut {
             transform: translateX(-100%);
             z-index: 1;
+            opacity: 1;
         }
     }
 }
 
 .backgroundCover {
     position: absolute;
-    width: 98%;
-    height: 98%;
+    width: 95%;
+    height: 95%;
     display: block;
     background-color: $white;
     z-index: 0;
+}
+
+.value {
+    @include flexBox(column, flex-start, center);
+    text-align: center;
+    margin-top: $l;
+    & div {
+        @include circleIcon($xl*2, 75%);
+        border: 2px solid $blue;
+        margin-bottom: $s;
+    }
+    &:nth-of-type(2n) div {
+        border-color: $orange;
+    }
+}
+
+.imageSlider {
+    height: 100vw;
+    width: 100%;
+    position: relative;
+    margin-bottom: $l;
+    &>img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        &.active {
+            opacity: 1;
+        }
+    }
+}
+
+.imageSwitch {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: $white;
+    border-radius: $xl;
+    box-shadow: 0 0 $s $grey-medium;
+    overflow: hidden;
+    z-index: 2;
+    @include flexBox(row, center, center);
+    & div {
+        @include circleIcon($l*2);
+        transition: background-color 0.25s ease;
+        & img {
+            pointer-events: none;
+        }
+        &:hover {
+            background-color: $grey-light;
+            cursor: pointer;
+        }
+    }
+}
+
+.imageIndicator {
+    position: absolute;
+    bottom: $xl;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flexBox(row, center, center);
+    & div {
+        display: block;
+        width: $m;
+        height: $m;
+        border-radius: 50%;
+        border: 2px solid $grey-light;
+        margin-inline: $s/2;
+        @include transition(0.25s, background-color, transform);
+        &.active {
+            background-color: $grey-light;
+        }
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.25);
+        }
+    }
+}
+
+.textBlock {
+    transition: opacity 0.5s ease;
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.services {
+    width: 100%;
+    height: 100%;
+    max-width: 480px;
+    max-height: 480px;
+    @include flexBox(column, center, center);
+    position: relative;
+    & .bubble {
+        position: absolute;
+        @include circleIcon(25%);
+        @include transition(0.5s, background-color, transform);
+        &.main {
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            background-color: $grey-dark;
+            width: 40%;
+            height: 40%;
+        }
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.solutionIcon {
+    background-color: $orange;
+    z-index: 2;
+    &.active {
+        background-color: $blue;
+    }
+    &.solution1 {
+        bottom: 75%;
+        left: 37.5%;
+    }
+    &.solution2 {
+        bottom: 56.25%;
+        left: 70%;
+    }
+    &.solution3 {
+        top: 56.25%;
+        left: 70%;
+    }
+    &.solution4 {
+        top: 75%;
+        left: 37.5%;
+    }
+    &.solution5 {
+        top: 56.25%;
+        right: 70%;
+    }
+    &.solution6 {
+        bottom: 56.25%;
+        right: 70%;
+    }
+}
+
+.outlines>div {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: solid $white;
+    &:nth-of-type(1) {
+        width: 55%;
+        height: 55%;
+        border-width: 3px;
+    }
+    &:nth-of-type(2) {
+        width: 70%;
+        height: 70%;
+        border-width: 2px;
+    }
+    &:nth-of-type(3) {
+        width: 85%;
+        height: 85%;
+        border-width: 1px;
+    }
+}
+
+.stages {
+    @include flexBox(column, flex-start, center);
+}
+
+.stage {
+    padding: $xl*1.5 $xl $xl;
+    border-radius: $m;
+    margin-top: $xl*2;
+    box-shadow: 0 $s $s $grey-medium;
+    position: relative;
+    background-size: cover;
+    max-width: 480px;
+    text-align: left;
+    & div {
+        font: 700 $l "Ubuntu", sans-serif;
+        color: $white;
+        width: 2.5em;
+        height: 2.5em;
+        @include flexBox(column, center, center);
+        border-radius: 50%;
+        background-color: $orange;
+        position: absolute;
+        top: -1.25em;
+        left: $xl;
+    }
+    & h3,
+    p {
+        color: $white;
+    }
+    &:nth-of-type(1) {
+        background-image: url("./../../assets/jpg/connected_maps.jpg");
+        align-self: flex-start;
+    }
+    &:nth-of-type(2) {
+        background-image: url("./../../assets/jpg/mobility_optimization.jpg");
+    }
+    &:nth-of-type(3) {
+        background-image: url("./../../assets/jpg/infrastructure_revolution.jpg");
+        align-self: flex-end;
+    }
+}
+
+form {
+    width: 100%;
+    border-radius: $m;
+    padding: $xl;
+    background-color: $white;
+    box-shadow: 0 0 $l $grey-medium;
+    transition: opacity 0.5s ease;
+    max-width: 480px;
+    & button {
+        width: 100%;
+    }
+}
+
+.inputField {
+    @include flexBox(column,
+    flex-start,
+    flex-start);
+    margin-block: $s;
+    & label {
+        font: 700 $m "Ubuntu", sans-serif;
+        line-height: 1.5;
+        color: $orange;
+    }
+    & input {
+        font: 400 $m "Roboto", sans-serif;
+        border: none;
+        border-bottom: 2px solid $grey-medium;
+        width: 100%;
+        padding-block: $s;
+        @include transition(0.25s,
+        padding,
+        background-color);
+        &::placeholder {
+            color: $grey-medium;
+        }
+        &:focus {
+            outline: none;
+            border-color: $blue;
+            padding-left: $m;
+        }
+    }
+    & textarea {
+        padding: $m;
+        border: 2px solid $grey-medium;
+        border-radius: 8px;
+        width: 100%;
+        height: 6em;
+        font: 400 $m "Roboto", sans-serif;
+        resize: none;
+        margin-top: $s;
+        &::placeholder {
+            color: $grey-medium;
+        }
+        &:focus {
+            outline: none;
+            border-color: $blue;
+            padding-left: $m;
+        }
+    }
+    &.error input {
+        border-color: $red;
+    }
+    &.error textarea {
+        border-color: $red;
+    }
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.checkBoxLabel {
+    @include flexBox(row,
+    flex-start,
+    center);
+    margin-top: $m;
+    & svg {
+        margin: 0 $m 0 4px;
+        transform: scale(1.5);
+        border: 2px solid $grey-medium;
+        border-radius: 4px;
+        @include transition(0.25s,
+        color,
+        background-color);
+        & path {
+            fill: $white;
+        }
+    }
+    &.checked svg {
+        border-color: $blue;
+        background-color: $blue;
+    }
+    &:hover {
+        cursor: pointer;
+    }
 }

@@ -5,26 +5,26 @@ $grey-dark: #2c2c2c;
 $grey-medium: #7f7f7f;
 $grey-light: #f2f2f2;
 $white: #ffffff;
+$red: #FF3F3F;
 // FONT SIZES
 $s: 0.75rem;
 $m: 1rem;
 $l: 1.5rem;
 $xl: 2.25rem;
-$title: 3rem;
 // DEVICE BREAKPOINTS
 $mobile: 768px;
 $tablet: 960px;
 // FONTS
 @font-face {
     font-family: "Ubuntu";
-    src: url("./../fonts/ubuntu-light-webfont.woff") format("woff");
-    font-weight: 100;
+    src: url("./../fonts/ubuntu-regular-webfont.woff") format("woff");
+    font-weight: 400;
 }
 
 @font-face {
     font-family: "Ubuntu";
-    src: url("./../fonts/ubuntu-regular-webfont.woff") format("woff");
-    font-weight: 400;
+    src: url("./../fonts/ubuntu-bold-webfont.woff") format("woff");
+    font-weight: 700;
 }
 
 @font-face {
@@ -49,17 +49,22 @@ $align-items) {
     align-items: $align-items;
 }
 
-@mixin circleIcon($size) {
+@mixin circleIcon($size,
+$proportion: 50%) {
     width: $size;
     height: $size;
     border-radius: 50%;
+    @include flexBox(column,
+    center,
+    center);
     & img {
-        width: 50%;
-        max-height: 75%;
+        width: $proportion;
+        max-height: $proportion;
     }
 }
 
-@mixin transition($properties...) {
+@mixin transition($duration: 0.25s,
+$properties...) {
     transition-property: $properties;
     transition-duration: 0.25s;
     transition-timing-function: ease;
@@ -90,20 +95,21 @@ h3 {
 }
 
 h1 {
-    font-weight: 100;
-    font-size: $title;
+    font-weight: 400;
+    font-size: $xl;
     margin-bottom: $m;
     z-index: 1;
 }
 
 h2 {
     font-weight: 400;
-    font-size: $xl;
+    font-size: $l;
+    margin-bottom: $s;
 }
 
 h3 {
-    font-weight: 400;
-    font-size: $l;
+    font-weight: 700;
+    font-size: $m;
 }
 
 p {
@@ -112,12 +118,8 @@ p {
 }
 
 a {
+    font: 400 $m "Ubuntu", sans-serif;
     text-decoration: none;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
     color: $grey-dark;
-    transition: background-color 0.25s ease;
-    &:hover {
-        background-color: $grey-light;
-    }
 }
