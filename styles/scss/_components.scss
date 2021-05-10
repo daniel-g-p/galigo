@@ -16,24 +16,6 @@
     }
 }
 
-button {
-    font: 700 $m "Ubuntu", sans-serif;
-    letter-spacing: 0.1em;
-    border: 2px solid $orange;
-    border-radius: 0.5em;
-    padding: 1em 2em;
-    background: none;
-    text-transform: uppercase;
-    color: $orange;
-    margin-block: $l;
-    @include transition(0.25s, color, background-color, opacity);
-    &:hover {
-        background-color: $orange;
-        color: $white;
-        cursor: pointer;
-    }
-}
-
 .screenDemo {
     @include flexBox(row, center, center);
     position: relative;
@@ -159,10 +141,6 @@ button {
             transform: scale(1.25);
         }
     }
-}
-
-.textBlock {
-    transition: opacity 0.5s ease;
 }
 
 .fadeOut {
@@ -291,20 +269,6 @@ button {
     &:nth-of-type(3) {
         background-image: url("./../../assets/jpg/infrastructure_revolution.jpg");
         align-self: flex-end;
-    }
-}
-
-form {
-    width: 100%;
-    border-radius: $m;
-    padding: $xl;
-    background-color: $white;
-    box-shadow: 0 0 $l $grey-medium;
-    transition: opacity 0.5s ease;
-    max-width: 480px;
-    margin-top: $xl;
-    & button {
-        width: 100%;
     }
 }
 

@@ -38,6 +38,13 @@ section {
     }
 }
 
+.textBlock {
+    transition: opacity 0.5s ease;
+    &.solution {
+        padding-inline: $l;
+    }
+}
+
 nav {
     box-shadow: 0 0 $s $grey-medium;
     background-color: $white;
@@ -103,12 +110,22 @@ nav {
     }
 }
 
-.textBlock.solution {
-    padding-inline: $l;
-}
-
 #contactSection {
     background-color: $grey-light;
+}
+
+form {
+    width: 100%;
+    border-radius: $m;
+    padding: $xl;
+    background-color: $white;
+    box-shadow: 0 0 $l $grey-medium;
+    transition: opacity 0.5s ease;
+    max-width: 480px;
+    margin-top: $xl;
+    & button {
+        width: 100%;
+    }
 }
 
 footer {
