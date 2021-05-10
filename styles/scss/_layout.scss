@@ -290,6 +290,9 @@ footer {
             padding-inline: 12.5%;
         }
     }
+    form {
+        margin: 0;
+    }
     #contactSection {
         @include flexBox(row-reverse,
         space-between,
