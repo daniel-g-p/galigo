@@ -31,7 +31,7 @@
 .screens {
     @include flexBox(row, flex-start, flex-start);
     position: absolute;
-    width: 95%;
+    width: 89%;
     overflow: hidden;
     &>img {
         position: relative;
@@ -92,6 +92,14 @@
         &.active {
             opacity: 1;
         }
+    }
+    & h2 {
+        position: absolute;
+        bottom: 7.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $white;
+        z-index: 6;
     }
 }
 
@@ -213,20 +221,22 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     border: solid $white;
+    width: 55%;
+    height: 55%;
     &:nth-of-type(1) {
         width: 55%;
         height: 55%;
-        border-width: 3px;
+        border-width: 6px;
     }
     &:nth-of-type(2) {
         width: 70%;
         height: 70%;
-        border-width: 2px;
+        border-width: 4px;
     }
     &:nth-of-type(3) {
         width: 85%;
         height: 85%;
-        border-width: 1px;
+        border-width: 2px;
     }
 }
 
@@ -277,6 +287,19 @@
     flex-start,
     flex-start);
     margin-block: $s;
+    & div {
+        width: 100%;
+        position: relative;
+        & svg {
+            fill: $red;
+            transform: scale(1.25);
+            position: absolute;
+            right: $s;
+            top: $m;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+    }
     & label {
         font: 700 $m "Ubuntu", sans-serif;
         line-height: 1.5;
@@ -288,9 +311,8 @@
         border-bottom: 2px solid $grey-medium;
         width: 100%;
         padding-block: $s;
-        @include transition(0.25s,
-        padding,
-        background-color);
+        padding-right: $xl;
+        transition: padding 0.25s ease;
         &::placeholder {
             color: $grey-medium;
         }
@@ -301,28 +323,45 @@
         }
     }
     & textarea {
-        padding: $m;
+        padding: $s;
+        padding-right: $xl;
         border: 2px solid $grey-medium;
         border-radius: 8px;
         width: 100%;
         height: 6em;
         font: 400 $m "Roboto", sans-serif;
+        transition: padding 0.25s ease;
         resize: none;
         margin-top: $s;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
         &::placeholder {
             color: $grey-medium;
+        }
+        &::-webkit-scrollbar {
+            display: none;
         }
         &:focus {
             outline: none;
             border-color: $blue;
-            padding-left: $m;
+            padding-left: $l;
+        }
+        &+svg {
+            top: $l;
+            // transform: scale(1.25) translateY(-50%);
         }
     }
     &.error input {
         border-color: $red;
+        &+svg {
+            opacity: 1;
+        }
     }
     &.error textarea {
         border-color: $red;
+        &+svg {
+            opacity: 1;
+        }
     }
 }
 
@@ -340,9 +379,6 @@ input[type=checkbox] {
         transform: scale(1.5);
         border: 2px solid $grey-medium;
         border-radius: 4px;
-        @include transition(0.25s,
-        color,
-        background-color);
         & path {
             fill: $white;
         }

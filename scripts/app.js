@@ -36,7 +36,7 @@ const problemsContent = [{
     },
     {
         title: "Problem 5",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique corporis placeat totam repellendus voluptate maiores animi distinctio expedita recusandae vero quasi dolorem consequuntur officia quas hic, iusto voluptatem ut rem."
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     },
     {
         title: "Problem 6",
@@ -128,7 +128,7 @@ problemNavigation.forEach(button => button.addEventListener("click", () => {
     } else if (button.classList.contains("previous")) {
         problemNumber--;
         if (problemNumber < 1) {
-            problemNumber = 7;
+            problemNumber = totalProblems;
         }
     } else {
         problemNumber = Number(button.classList.value.replace(/[^0-9]/g, ''));
@@ -144,6 +144,23 @@ problemNavigation.forEach(button => button.addEventListener("click", () => {
     }, 500)
 }));
 
+setInterval(() => {
+    const currentElements = document.querySelectorAll(`.problem${problemNumber}`);
+    problemNumber++;
+    if (problemNumber > totalProblems) {
+        problemNumber = 1;
+    }
+    const newElements = document.querySelectorAll(`.problem${problemNumber}`);
+    currentElements.forEach(e => e.classList.remove("active"));
+    newElements.forEach(e => e.classList.add("active"));
+    problemTextblock.classList.add("fadeOut");
+    setTimeout(() => {
+        problemTextblock.firstElementChild.innerText = problemsContent[problemNumber - 1].title;
+        problemTextblock.lastElementChild.innerText = problemsContent[problemNumber - 1].text;
+        problemTextblock.classList.remove("fadeOut");
+    }, 500);
+}, 5000);
+
 // 4.4 SOLUTIONS SECTION
 solutionNavigation.forEach(button => button.addEventListener("click", () => {
     const currentSolution = document.querySelector(`.solution${solutionNumber}`);
@@ -158,27 +175,29 @@ solutionNavigation.forEach(button => button.addEventListener("click", () => {
     }, 500)
 }));
 
+
+
 // 4.5 FORM SECTION
 form.addEventListener("submit", e => {
     e.preventDefault();
     inputs.forEach(i => {
         if (!i.value) {
-            i.parentElement.classList.add("error");
+            i.parentElement.parentElement.classList.add("error");
         } else {
-            i.parentElement.classList.remove("error")
+            i.parentElement.parentElement.classList.remove("error")
         };
     });
     if (!emailInput.value.match(emailFormat)) {
-        emailInput.parentElement.classList.add("error");
+        emailInput.parentElement.parentElement.classList.add("error");
     }
-    if (inputs.every(i => !i.parentElement.classList.contains("error"))) {
+    if (inputs.every(i => !i.parentElement.parentElement.classList.contains("error"))) {
         form.lastElementChild.innerHTML = "Thank you";
     }
 });
 checkBoxLabel.addEventListener("click", () => {
     checkBoxLabel.classList.toggle("checked");
 });
-inputs.forEach(i => i.addEventListener("input", () => i.parentElement.classList.remove("error")));
+inputs.forEach(i => i.addEventListener("input", () => i.parentElement.parentElement.classList.remove("error")));
 
 
 // 5 HELPER FUNCTIONS

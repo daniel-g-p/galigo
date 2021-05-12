@@ -46,8 +46,8 @@ section {
 }
 
 nav {
-    box-shadow: 0 0 $s $grey-medium;
     background-color: $white;
+    box-shadow: 0 0 $s $grey-medium;
 }
 
 .navBar {
@@ -55,6 +55,7 @@ nav {
     space-between,
     center);
     padding: $l;
+    background-color: $white;
 }
 
 .links {
@@ -92,6 +93,10 @@ nav {
     background-color: $grey-light;
 }
 
+#aboutSection {
+    text-align: center;
+}
+
 #problemSection {
     padding: 0;
 }
@@ -116,6 +121,7 @@ nav {
 
 form {
     width: 100%;
+    margin-inline: auto;
     border-radius: $m;
     padding: $xl;
     background-color: $white;
@@ -250,8 +256,8 @@ footer {
         width: 50%;
         height: 50vw;
         margin: 0;
-        max-width: 480px;
-        max-height: 480px;
+        max-width: 500px;
+        max-height: 500px;
     }
     .imageSwitch {
         left: 100%;
