@@ -300,6 +300,27 @@ footer {
     .links {
         margin: 0;
     }
+    .stages {
+        @include flexBox(row,
+        space-between,
+        start);
+        height: initial;
+        margin-top: $xl*2;
+    }
+    .stage {
+        margin: 0;
+        width: 32%;
+        min-height: 100%;
+        &:nth-of-type(1) {
+            align-self: stretch;
+        }
+        &:nth-of-type(2) {
+            align-self: stretch;
+        }
+        &:nth-of-type(3) {
+            align-self: stretch;
+        }
+    }
     #solutionsSection {
         &>.container {
             padding-inline: 12.5%;

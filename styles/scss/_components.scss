@@ -60,7 +60,7 @@
     width: 95%;
     height: 95%;
     display: block;
-    background-color: $white;
+    background-color: $grey-dark;
     z-index: 0;
 }
 
@@ -254,6 +254,7 @@
     background-size: cover;
     max-width: 480px;
     text-align: left;
+    @include flexBox(column, center, center);
     & div {
         font: 700 $l "Ubuntu", sans-serif;
         color: $white;
