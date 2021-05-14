@@ -117,23 +117,13 @@ nav {
     }
 }
 
-#contactSection {
-    background-color: $grey-light;
+#whyGaligoSection {
+    padding-bottom: $xl * 2;
 }
 
-form {
-    width: 100%;
-    margin-inline: auto;
-    border-radius: $m;
-    padding: $xl;
-    background-color: $white;
-    box-shadow: 0 0 $l $grey-medium;
-    transition: opacity 0.5s ease;
-    max-width: 480px;
-    margin-top: $xl;
-    & button {
-        width: 100%;
-    }
+#contactSection {
+    background-color: $grey-light;
+    text-align: center
 }
 
 footer {
@@ -315,14 +305,12 @@ footer {
             padding-inline: 12.5%;
         }
     }
-    form {
-        margin: 0;
-    }
     #contactSection {
         @include flexBox(row-reverse,
         space-between,
         center);
         padding-block: $xl*2;
+        text-align: left;
         & .container {
             width: 40%;
             margin-inline: $xl*2 0;
