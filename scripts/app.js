@@ -167,28 +167,7 @@ solutionNavigation.forEach(button => button.addEventListener("click", () => {
     }, 500)
 }));
 
-// 4.5 FORM SECTION
-form.addEventListener("submit", e => {
-    e.preventDefault();
-    inputs.forEach(i => {
-        if (!i.value) {
-            i.parentElement.parentElement.classList.add("error");
-        } else {
-            i.parentElement.parentElement.classList.remove("error")
-        };
-    });
-    if (!emailInput.value.match(emailFormat)) {
-        emailInput.parentElement.parentElement.classList.add("error");
-    }
-    if (inputs.every(i => !i.parentElement.parentElement.classList.contains("error"))) {
-        form.lastElementChild.innerHTML = "Thank you";
-    }
-});
-checkBoxLabel.addEventListener("click", () => {
-    checkBoxLabel.classList.toggle("checked");
-});
-inputs.forEach(i => i.addEventListener("input", () => i.parentElement.parentElement.classList.remove("error")));
-
+// 4.5 INTERSECTTION OBSERVER
 const intersectObserver = new IntersectionObserver(function(entries, observer) {
     entries.forEach(e => {
         if (e.isIntersecting) {
@@ -202,6 +181,7 @@ sections.forEach(s => intersectObserver.observe(s));
 
 
 // 5 HELPER FUNCTIONS
+
 const toggleNav = () => {
     mobileNav.classList.toggle("active");
     navToggle.classList.toggle("active");
