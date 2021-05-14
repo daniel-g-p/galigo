@@ -254,7 +254,7 @@
     background-size: cover;
     max-width: 480px;
     text-align: left;
-    @include flexBox(column, center, center);
+    @include flexBox(column, center, flex-start);
     & div {
         font: 700 $l "Ubuntu", sans-serif;
         color: $white;
