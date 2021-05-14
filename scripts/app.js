@@ -1,10 +1,14 @@
 // 1 DOM Elements
 
+const sections = document.querySelectorAll("section");
 const navToggle = document.querySelector(".navToggle");
 const mobileNav = document.querySelector(".mobileNav");
 const navLinks = document.querySelectorAll(".links a, .hero a");
 const problemNavigation = document.querySelectorAll(".imageSwitch div, .imageIndicator div");
 const problemTextblock = document.querySelector(".textBlock.problem");
+const problemTitle = document.querySelector(".textBlock.problem h3");
+const problemDescription = document.querySelector(".textBlock.problem p");
+const problemMainBlock = document.querySelector(".container.problems");
 const solutionNavigation = document.querySelectorAll(".solutionIcon");
 const solutionTextblock = document.querySelector(".textBlock.solution");
 const checkBoxLabel = document.querySelector(".checkBoxLabel");
@@ -133,33 +137,21 @@ problemNavigation.forEach(button => button.addEventListener("click", () => {
     } else {
         problemNumber = Number(button.classList.value.replace(/[^0-9]/g, ''));
     }
+    let problemHeight = problemMainBlock.scrollHeight;
+    problemMainBlock.style.height = problemHeight + "px";
     const newElements = document.querySelectorAll(`.problem${problemNumber}`);
     currentElements.forEach(e => e.classList.remove("active"));
     newElements.forEach(e => e.classList.add("active"));
+    oldProblemHeight = problemDescription.scrollHeight;
     problemTextblock.classList.add("fadeOut");
     setTimeout(() => {
-        problemTextblock.firstElementChild.innerText = problemsContent[problemNumber - 1].title;
-        problemTextblock.lastElementChild.innerText = problemsContent[problemNumber - 1].text;
+        problemTitle.innerText = problemsContent[problemNumber - 1].title;
+        problemDescription.innerText = problemsContent[problemNumber - 1].text;
+        newProblemHeight = problemDescription.scrollHeight;
         problemTextblock.classList.remove("fadeOut");
+        problemMainBlock.style.height = problemHeight + newProblemHeight - oldProblemHeight + "px";
     }, 500)
 }));
-
-setInterval(() => {
-    const currentElements = document.querySelectorAll(`.problem${problemNumber}`);
-    problemNumber++;
-    if (problemNumber > totalProblems) {
-        problemNumber = 1;
-    }
-    const newElements = document.querySelectorAll(`.problem${problemNumber}`);
-    currentElements.forEach(e => e.classList.remove("active"));
-    newElements.forEach(e => e.classList.add("active"));
-    problemTextblock.classList.add("fadeOut");
-    setTimeout(() => {
-        problemTextblock.firstElementChild.innerText = problemsContent[problemNumber - 1].title;
-        problemTextblock.lastElementChild.innerText = problemsContent[problemNumber - 1].text;
-        problemTextblock.classList.remove("fadeOut");
-    }, 500);
-}, 5000);
 
 // 4.4 SOLUTIONS SECTION
 solutionNavigation.forEach(button => button.addEventListener("click", () => {
@@ -174,8 +166,6 @@ solutionNavigation.forEach(button => button.addEventListener("click", () => {
         solutionTextblock.classList.remove("fadeOut");
     }, 500)
 }));
-
-
 
 // 4.5 FORM SECTION
 form.addEventListener("submit", e => {
@@ -198,6 +188,17 @@ checkBoxLabel.addEventListener("click", () => {
     checkBoxLabel.classList.toggle("checked");
 });
 inputs.forEach(i => i.addEventListener("input", () => i.parentElement.parentElement.classList.remove("error")));
+
+const intersectObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.remove("fadeOut");
+        } else
+            e.target.classList.add("fadeOut");
+    });
+});
+
+sections.forEach(s => intersectObserver.observe(s));
 
 
 // 5 HELPER FUNCTIONS
