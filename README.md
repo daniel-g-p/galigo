@@ -10,7 +10,6 @@ GaliGo is a brand developed by 3D Aerospace, a young tech startup that I interne
 2. [Technologies](#technologies)
 3. [Features](#features)
 4. [Project Status](#project-status)
-5. [References](#references)
 
 ## Motivation
 
