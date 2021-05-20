@@ -126,7 +126,8 @@ button {
     background: none;
     text-transform: uppercase;
     color: $orange;
-    margin-block: $l;
+    margin-top: $l;
+    margin-bottom: $l;
     @include transition(0.25s,
     color,
     background-color,

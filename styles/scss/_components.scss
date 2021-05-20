@@ -140,7 +140,8 @@
         height: $m;
         border-radius: 50%;
         border: 2px solid $grey-light;
-        margin-inline: $s/2;
+        margin-left: $s/2;
+        margin-right: $s/2;
         @include transition(0.25s, background-color, transform);
         &.active {
             background-color: $grey-light;

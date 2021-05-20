@@ -13,7 +13,8 @@ section {
 .container {
     position: relative;
     max-width: 480px;
-    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
     &.demo {
         padding: 0;
         background-image: url("./../../assets/svg/background.svg");
@@ -107,7 +108,8 @@ nav {
     padding-inline: 0;
     & h2 {
         text-align: center;
-        margin-inline: auto;
+        margin-left: auto;
+        margin-right: auto;
         margin-bottom: 0;
     }
     & .container {
@@ -139,7 +141,8 @@ footer {
         }
         & a {
             display: block;
-            margin-block: $s;
+            margin-top: $s;
+            margin-bottom: $s;
             transition: color 0.25s ease;
             &:hover {
                 color: $orange;
@@ -147,7 +150,8 @@ footer {
         }
     }
     & .links {
-        margin-block: $s;
+        margin-top: $s;
+        margin-bottom: $s;
     }
 }
 
@@ -274,7 +278,8 @@ footer {
         center,
         center);
         & a {
-            margin-inline: $s;
+            margin-left: $s;
+            margin-right: $s;
         }
     }
 }
@@ -334,7 +339,8 @@ footer {
         text-align: left;
         & .container {
             width: 40%;
-            margin-inline: $xl*2 0;
+            margin-left: $xl*2;
+            margin-right: 0;
             flex-grow: 1;
         }
     }
